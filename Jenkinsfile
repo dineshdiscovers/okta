@@ -17,8 +17,8 @@ pipeline {
     }
     stage('archieve artifacts') {
       steps {
-        archiveArtifacts './server/target/*.jar'
-        archiveArtifacts './client/dist/*'
+        archiveArtifacts 'server/target/*.jar'
+        archiveArtifacts 'client/dist/*'
       }
     }
     stage('Build Docker') {
