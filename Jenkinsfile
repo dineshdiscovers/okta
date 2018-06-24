@@ -17,8 +17,9 @@ pipeline {
     }
     stage('archieve artifacts') {
       steps {
+	sh 'cd client/dist && zip bundle.zip *'
         archiveArtifacts 'server/target/*.jar'
-        archiveArtifacts 'client/dist/*'
+        archiveArtifacts 'client/dist/*.zip'
       }
     }
     stage('Build Docker') {
