@@ -34,7 +34,7 @@ pipeline {
     }
     stage('Docker compose down') {
       steps {
-        sh ' docker-compose down'
+        sh ' cd shared && docker-compose down'
       }
     }
   }
