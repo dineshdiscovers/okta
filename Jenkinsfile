@@ -15,5 +15,16 @@ pipeline {
         }
       }
     }
+    stage('archieve artifacts') {
+      steps {
+        archiveArtifacts './server/target/*.jar'
+        archiveArtifacts './client/dist/*'
+      }
+    }
+    stage('Build Docker') {
+      steps {
+        sh 'cd shared && docker-compose up -d --build'
+      }
+    }
   }
 }
