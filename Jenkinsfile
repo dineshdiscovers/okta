@@ -17,7 +17,7 @@ pipeline {
     }
     stage('archieve artifacts') {
       steps {
-	sh 'cd client/dist && zip bundle.zip *'
+        sh 'cd client/dist && zip bundle.zip *'
         archiveArtifacts 'server/target/*.jar'
         archiveArtifacts 'client/dist/*.zip'
       }
@@ -25,6 +25,16 @@ pipeline {
     stage('Build Docker') {
       steps {
         sh 'cd shared && docker-compose up -d --build'
+      }
+    }
+    stage('User Prompt') {
+      steps {
+        input 'Do you wish to continue?'
+      }
+    }
+    stage('Docker compose down') {
+      steps {
+        sh ' docker-compose down'
       }
     }
   }
